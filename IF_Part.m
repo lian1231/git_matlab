@@ -52,36 +52,80 @@ text(9,1.1,'B3');
 %%
 % Fuzzy Rule 
 %---------------------------------------
-% R1: x1 is A1 and x2 is B1 then y1 
-% R2: x1 is A2 and x2 is B2 then y2
-% R3: x1 is A3 and x2 is B3 then y3
+% R1: x1 is A1 and x2 is B2 then y1  -- small & median
+% R2: x1 is A2 and x2 is B2 then y2  -- median & median
+% R3: x1 is A3 and x2 is B1 then y2  -- large & small 
+%------------update on 8/28-------------
+% R4: x1 is A1 and x2 is B1 then y4  --  small & small
+% R5: x1 is A3 and x2 is B3 then y5  --  large & large 
+% R6: x1 is A2 and x2 is B1 then y1  --  median & small
+% R7: x1 is A2 and x2 is B3 then y3  --  median & large
+% R8: x1 is A1 and x2 is B3 then y2  --  small & large
+% R9: x1 is A3 and x2 is B2 then y3  --  large & median 
 %---------------------------------------
 
+% premise  ( if part )
 % R1
-[AA1,BB1]=meshgrid(A1,B1);
-     pre1=AA1.*BB1;
+[AA1,BB2]=meshgrid(A1,B2);
+     pre1=AA1.*BB2;
 % R2
 [AA2,BB2]=meshgrid(A2,B2);
      pre2=AA2.*BB2;
 % R3
-[AA3,BB3]=meshgrid(A3,B3);
-     pre3=AA3.*BB3;
+[AA3,BB1]=meshgrid(A3,B1);
+     pre3=AA3.*BB1;
 
-% draw the picture about R1,R2 and R2
-subplot(223);
+%----------------update on 8/28 ---------------- 
+% R4
+[AA1,BB1]=meshgrid(A1,B1);
+     pre4=AA1.*BB1;
+% R5
+[AA3,BB3]=meshgrid(A3,B3);
+     pre5=AA3.*BB3;
+% R6
+[AA2,BB1]=meshgrid(A2,B1);
+     pre6=AA2.*BB1;
+% R7
+[AA2,BB3]=meshgrid(A2,B3);
+    pre7=AA2.*BB3;
+% R8
+[AA1,BB3]=meshgrid(A1,B3);
+    pre8=AA1.*BB3;
+% R9
+[AA3,BB2]=meshgrid(A3,B2);
+    pre9=AA3.*BB2;     
+
+%-----------------------------------------------
+
+
+% draw the picture about R1~R9
+subplot(234);
 mesh(x1,x2,pre1);
 xlabel('x1');
 ylabel('x2');
-text(-5,0,1.2,'R1');
+
 zlabel('Membership Grade');
 hold on;
 mesh(x1,x2,pre2);
 mesh(x1,x2,pre3);
+mesh(x1,x2,pre4);
+mesh(x1,x2,pre5);
+mesh(x1,x2,pre6);
+mesh(x1,x2,pre7);
+mesh(x1,x2,pre8);
+mesh(x1,x2,pre9);
 hold off;
 axis([min(x1) max(x1) min(x2) max(x2) 0 1.2 ]);
-view(60,20);
+view(-60,20);
 title('if part');
-text(0,5,1.2,'R2');
-text(5,10,1.2,'R3');
+text(-7,5,1,'R1');
+text(0,5,1,'R2');
+text(6,0,1,'R3');
+text(-7,0,1,'R4');
+text(6,10,1,'R5');
+text(0,0,1,'R6');
+text(0,10,1,'R7');
+text(-7,10,1,'R8');
+text(6,10,1,'R9');
 
 Then_Part(x1,x2);
