@@ -3,7 +3,7 @@ function fuzzymodel(input_x)
 %input_x=[5,9];
 x1=linspace(-10,10,101);
 x2=linspace(0,10,101);
-y=linspace(0,10,101);
+y=linspace(0,180,101);
 point_n=length(x1);
 out_y=zeros(3,point_n);
 %%
@@ -19,9 +19,9 @@ out_y=zeros(3,point_n);
 % B3= gaussian_mf(x2,10,0.5);  % ¤j
 
 % output space y -> y1-y9
-C1 = (0.5).*triangle_mf(y,0,1,5);  % small
-C2 = (0.7).*triangle_mf(y,4,6,8);  % median
-C3 = (0.9).*triangle_mf(y,7,10,15); % large
+C1 = triangle_mf(y,0,18,90);  % small
+C2 = triangle_mf(y,72,108,144);  % medium
+C3 = triangle_mf(y,136,180,270); % large
 %----------------------------------------
 % CON(C1) very small
 C4 = C1.^2; % update by 8/27 for Rule 4

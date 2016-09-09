@@ -1,6 +1,6 @@
 x1=linspace(-10,10,101);
 x2=linspace(0,10,101);
-y=linspace(0,10,101);
+y=linspace(0,180,101);
 
 % input space x1 -> A1 , A2 , A3
 A1= gaussian_mf(x1,-6,1);   % ¤p
@@ -17,9 +17,9 @@ xlabel('x1');
 ylabel('membership grade');
 axis([min(x1) max(x1) 0 1.2]);
 title('antecedent MF ');
-text(-5.5,1.1,'A1');
-text(0,1.1,'A2');
-text(5,1.1,'A3');
+text(-6.5,1.1,'small');
+text(-1,1.1,'medium');
+text(5,1.1,'large');
 
 
 % input space x2 -> B1 , B2 , B3
@@ -37,28 +37,28 @@ xlabel('x2');
 ylabel('membership grade');
 axis([min(x2) max(x2) 0 1.2]);
 title('antecedent MF ');
-text(1,1.1,'B1');
-text(5,1.1,'B2');
-text(9,1.1,'B3');
+text(0,1.1,'small');
+text(4,1.1,'medium');
+text(9,1.1,'large');
 
 % output space y -> y1-y5
-C1 = (0.5).*triangle_mf(y,0,1,5);  % small
-C2 = (0.7).*triangle_mf(y,4,6,8);  % median
-C3 = (0.9).*triangle_mf(y,7,10,15); % large
+C1 = triangle_mf(y,0,18,90);  % small
+C2 = triangle_mf(y,72,108,144);  % medium
+C3 = triangle_mf(y,136,180,270); % large
 
 % CON(C1) very small
-C4 = C1.^2; % update by 8/27 for Rule 4
+C4 = C1.^2;                          % update by 8/27 for Rule 4
 % Extremely large
-C5 = C3.^8; % update by 8/27 for Rule 5
+C5 = C3.^8;                         % update by 8/27 for Rule 5
 
 all=[C1;C2;C3;C4;C5];
 subplot(233);
 plot(y,all);
-text(.6,.4,'C1');
-text(6,.6,'C2');
-text(9.5,.9,'C3');
-text(1,.2,'C4');
-text(10,.45,'C5');
+text(10.8,1.05,'small');
+text(105,1.05,'medium');
+text(162,.9,'large');
+text(12.6,.3,'very small');
+text(162,.45,'extremely large');
 xlabel('y');
 ylabel('membership grade');
 axis([min(y) max(y) 0 1.2]);
@@ -67,16 +67,16 @@ title('consequent MF ');
 
 % Fuzzy Rule 
 %---------------------------------------
-% R1: x1 is A1 and x2 is B2 then y1  -- small & median
-% R2: x1 is A2 and x2 is B2 then y2  -- median & median
+% R1: x1 is A1 and x2 is B2 then y1  -- small & medium
+% R2: x1 is A2 and x2 is B2 then y2  -- medium & medium
 % R3: x1 is A3 and x2 is B1 then y2  -- large & small 
 %------------update on 8/28-------------
 % R4: x1 is A1 and x2 is B1 then y4  --  small & small
 % R5: x1 is A3 and x2 is B3 then y5  --  large & large 
-% R6: x1 is A2 and x2 is B1 then y1  --  median & small
-% R7: x1 is A2 and x2 is B3 then y3  --  median & large
+% R6: x1 is A2 and x2 is B1 then y1  --  medium & small
+% R7: x1 is A2 and x2 is B3 then y3  --  medium & large
 % R8: x1 is A1 and x2 is B3 then y2  --  small & large
-% R9: x1 is A3 and x2 is B2 then y3  --  large & median 
+% R9: x1 is A3 and x2 is B2 then y3  --  large & medium 
 %---------------------------------------
 
 % premise  ( if part )
@@ -131,16 +131,16 @@ mesh(x1,x2,pre9);
 hold off;
 axis([min(x1) max(x1) min(x2) max(x2) 0 1.2 ]);
 view(-60,20);
-title('if part');
+title('input space');
 text(-7,5,1,'R1');
 text(0,5,1,'R2');
 text(6,0,1,'R3');
 text(-7,0,1,'R4');
-text(6,5,1,'R5');
+text(6,5,1,'R9');
 text(0,0,1,'R6');
 text(0,10,1,'R7');
 text(-7,10,1,'R8');
-text(6,10,1,'R9');
+text(6,10,1,'R5');
 
 
      
