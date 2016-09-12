@@ -6,7 +6,7 @@ y=linspace(0,180,101);
 A1= gaussian_mf(x1,-6,1);   % ¤p
 A2= gaussian_mf(x1,0,0.5);  % ¤¤
 A3= gaussian_mf(x1,7,2);    % ¤j
-
+figure;
 subplot(231);
 plot(x1,A1');
 hold on;
