@@ -1,4 +1,3 @@
-% define var x1 , x2 , y
 x1=linspace(-10,10,101);
 x2=linspace(0,10,101);
 y=linspace(0,180,101);
