@@ -1,4 +1,6 @@
 function out = inference_0918(v1,v2,v3,y)
+% separate the if-part and then-part
+% create a function of if-part and a function of then-part respectively
 
 pre1=IF_Part(v1(1,:),v2(2,:)); % IF_Part(x1_mf,x2_mf)
 pre2=IF_Part(v1(2,:),v2(2,:));

@@ -1,7 +1,11 @@
+% to pratice how to make fuzzy sets  and fuzzy rule
+% draw the picture of input space and input-output curve
+
+
 % define var x1 , x2 , y
-x1=linspace(-10,10,101);
-x2=linspace(0,10,101);
-y=linspace(0,180,101);
+x1=linspace(-10,10,100);
+x2=linspace(0,10,100);
+y=linspace(0,180,100);
 % ©w¸q x1 ªºfuzzy set
 x1_small= gaussian_mf(x1,-6,1);   % small
 x1_medium= gaussian_mf(x1,0,0.5); % medium
