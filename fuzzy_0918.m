@@ -2,7 +2,6 @@
 x1=linspace(-10,10,101);
 x2=linspace(0,10,101);
 y=linspace(0,180,101);
-
 % ©w¸q x1 ªºfuzzy set
 x1_small= gaussian_mf(x1,-6,1);   % small
 x1_medium= gaussian_mf(x1,0,0.5); % medium
