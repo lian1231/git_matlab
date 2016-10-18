@@ -27,8 +27,34 @@ y_vsmall = y_small.^2;                  % CON(C1) very small
 y_elarge = y_large.^8;                  % Extremely large
 y_fuzzy=[y_small;y_medium;y_large;y_vsmall;y_elarge];
 
-% 模糊推論
-Rule_out=FuzzyRule_0918(x1_fuzzy,x2_fuzzy,y_fuzzy,y);
+% 模糊規則
+R1_out=Fuzzy_Rule_1011(x1_small,x2_medium,y_small);
+R2_out=Fuzzy_Rule_1011(x1_medium,x2_medium,y_medium);
+R3_out=Fuzzy_Rule_1011(x1_large,x2_small,y_medium);
+R4_out=Fuzzy_Rule_1011(x1_small,x2_small,y_vsmall);
+R5_out=Fuzzy_Rule_1011(x1_large,x2_large,y_elarge);
+R6_out=Fuzzy_Rule_1011(x1_medium,x2_medium,y_small);
+R7_out=Fuzzy_Rule_1011(x1_medium,x2_large,y_large);
+R8_out=Fuzzy_Rule_1011(x1_small,x2_large,y_small);
+R9_out=Fuzzy_Rule_1011(x1_large,x2_medium,y_large);
+
+point_n=length(y);
+out=zeros(point_n);
+% 取聯集(Max)後做 defuzzy
+for i=1:point_n
+    for j=1:point_n
+         con_mf_out=[R1_out(i,j,:);R2_out(i,j,:);R3_out(i,j,:);R4_out(i,j,:);R5_out(i,j,:);R6_out(i,j,:);R7_out(i,j,:);R8_out(i,j,:);R9_out(i,j,:)];
+         overall=max(con_mf_out);
+         overall_out_mf=overall(:)';
+         out(i,j)=defuzzy(y,overall_out_mf);
+    end
+end
+
+
+
+
+
+
 
 % 畫input-output curve
 figure;

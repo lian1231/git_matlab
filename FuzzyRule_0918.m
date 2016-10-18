@@ -1,4 +1,4 @@
-function out = inference_0918(v1,v2,v3,y)
+function out = FuzzyRule_0918(v1,v2,v3,y)
 % separate the if-part and then-part
 % create a function of if-part and a function of then-part respectively
 

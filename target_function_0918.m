@@ -26,7 +26,7 @@ t_y_elarge = t_y_large.^8;                  % Extremelt_y large
 t_y_fuzzt_y=[t_y_small;t_y_medium;t_y_large;t_y_vsmall;t_y_elarge];
 
 % ¼Ò½k±À½×
-Target_Rule_out=inference_0918(t_x1_fuzzt_y,t_x2_fuzzt_y,t_y_fuzzt_y,t_y);
+Target_Rule_out=FuzzyRule_0918(t_x1_fuzzt_y,t_x2_fuzzt_y,t_y_fuzzt_y,t_y);
 
 figure;
 mesh(t_x1,t_x2,Target_Rule_out');
