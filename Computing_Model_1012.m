@@ -6,9 +6,9 @@ function out=Computing_Model_1012(input_x)
 [Num_point,Num_v]=size(input_x);
 
 % define var x1 , x2 , y
-x1=linspace(-10,10,100);  % ex:汙濁程度
-x2=linspace(0,10,100);    % ex:洗衣量 
-y=linspace(0,180,100);    % ex:洗衣時間
+%x1=linspace(-10,10,100);  % ex:汙濁程度
+%x2=linspace(0,10,100);    % ex:洗衣量 
+ y=1:1:180;    % ex:洗衣時間
 
 % 定義 x1 的fuzzy set
 %x1_small= gaussian_mf(x1,-6,1);   % small  v1v2
@@ -23,12 +23,18 @@ y=linspace(0,180,100);    % ex:洗衣時間
 %x2_fuzzy=[x2_small;x2_medium;x2_large];
 
 % 定義 y 的fuzzy set
-y_small = triangle_mf(y,0,18,90);      % small
-y_medium = triangle_mf(y,72,108,144);  % medium
-y_large = triangle_mf(y,136,180,270);  % large
-y_vsmall = y_small.^2;                  % CON(C1) very small                
-y_elarge = y_large.^8;                  % Extremely large
-%y_fuzzy=[y_small;y_medium;y_large;y_vsmall;y_elarge];
+% y_small = triangle_mf(y,0,18,90);      % small
+% y_medium = triangle_mf(y,72,108,144);  % medium
+% y_large = triangle_mf(y,136,180,270);  % large
+% y_vsmall = y_small.^2;                  % CON(C1) very small                
+% y_elarge = y_large.^8;                  % Extremely large
+
+y_small = singleton(y,18)    ; % small   
+y_medium = singleton(y,108)  ; % medium      
+y_large =  singleton(y,150)  ; % large       
+y_vsmall = singleton(y,5)   ;  % CON(C1) very small               
+y_elarge = singleton(y,180)  ; % Extremely large  
+
 
 %-------------------------------模糊推論( Mandani Max-min 合成法 )-------------------------------
 %-------- 模糊規則

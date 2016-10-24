@@ -3,6 +3,7 @@
 
 %clc;clear all;close all;
 global MSE_ori;
+global TargetOut;
 %% initialization
 %
 swarm_size = 34;                       % number of the swarm particles
@@ -26,16 +27,16 @@ swarm(:,4,1) =MSE_ori;                    % set the best value so far   (MSE)
 
 
 %% 要測試的100點
-x1=linspace(-10,10,100);
-x2=linspace(0,10,100);
-Input_Range=[x1,x2];
-Random_Index=randperm(200,101);
-Select_Point=sort(Input_Range(Random_Index)); % input 101點
+%x1=linspace(-10,10,100);
+%x2=linspace(0,10,100);
+%Input_Range=[x1,x2];
+%Random_Index=randperm(200,101);
+%Select_Point=sort(Input_Range(Random_Index)); % input 101點
 
 %% define the objective funcion here (vectorized form)  %定義目標函數
- target_f=@(x_t) 2-10*x_t+(5)*x_t.^2;
- Tout=target_f(Select_Point(2:101));
- P_Mout=zeros(swarm_size,100);
+ %target_f=@(x_t) 2-10*x_t+(5)*x_t.^2;
+ %Tout=target_f(Select_Point(2:101));
+ %P_Mout=zeros(swarm_size,100);
  MSE=zeros(swarm_size,1);
  
  tic;
@@ -86,7 +87,7 @@ for iter = 1:maxIter
             para13(i) para14(i) para15(i) para16(i) para17(i)];
         P_Mout=Computing_Model_PSO_test_allpara(Select_Point(1:101),para_input);
         
-        error=Tout-P_Mout;
+        error= TargetOut(2:101)-P_Mout;
         MSE(i)=sum(error.^2)/100;
     end
        

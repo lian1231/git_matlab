@@ -2,8 +2,7 @@ function out=Computing_Model_PSO_test_allpara(input_x,para)
 %%
 % パPSO_test ㊣ , 代刚┮Τ把计
 %%
-y=fix(linspace(0,180,100));
-%para(13)=18;para(14)=108;para(15)=160;para(16)=5;para(17)=180;
+ y=1:1:180;
 
 % ﹚竡 y fuzzy set
 y_small = singleton(y,fix(para(13)))    ;%triangle_mf(y,0,18,90);       % small   
@@ -15,7 +14,7 @@ y_elarge = singleton(y,fix(para(17)))  ;% y_large.^8;                  % Extreme
 
 %% -------------------------------家絢崩阶( Mandani Max-min Θ猭 )-------------------------------
 %-------- 家絢砏玥
-R_out=zeros(9,100);
+R_out=zeros(9,180);
 out=zeros(1,100);
 
 
